@@ -758,15 +758,7 @@ int format_unknown_device(const char *device, const char* path, const char *fs_t
             }
             return format_ext3_device(device);
         }
-		
-		if (strcmp("f2fs", fs_type) == 0) {
-            LOGI("Formatting f2fs device.\n");
-            if (0 != ensure_path_unmounted(path)) {
-                LOGE("Error while unmounting %s.\n", path);
-                return -12;
-            }
-            return format_f2fs_device(device);
-        }
+	
 		
 
         if (strcmp("ext2", fs_type) == 0) {
