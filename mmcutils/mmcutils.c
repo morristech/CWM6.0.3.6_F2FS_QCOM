@@ -339,6 +339,18 @@ run_exec_process ( char **argv) {
 }
 
 int
+format_f2fs_device (const char *device) {
+    char *const mkfs.f2fs_arm[] = {MKFS.F2FS_ARM, "-t", device, NULL};
+    // Run mke2fs
+    if(run_exec_process(mkfs.f2fs_arm)) {
+        printf("failure while running mkfs.f2fs_arm\n");
+        return -1;
+    }
+    return 0;
+}
+
+
+int
 format_ext3_device (const char *device) {
     char *const mke2fs[] = {MKE2FS_BIN, "-j", "-q", device, NULL};
     char *const tune2fs[] = {TUNE2FS_BIN, "-C", "1", device, NULL};

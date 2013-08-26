@@ -284,6 +284,7 @@ int ensure_path_mounted_at_mount_point(const char* path, const char* mount_point
         return mtd_mount_partition(partition, mount_point, v->fs_type, 0);
     } else if (strcmp(v->fs_type, "ext4") == 0 ||
                strcmp(v->fs_type, "ext3") == 0 ||
+			   strcmp(v->fs_type, "f2fs") == 0 ||
                strcmp(v->fs_type, "rfs") == 0 ||
                strcmp(v->fs_type, "vfat") == 0) {
         if ((result = try_mount(v->device, mount_point, v->fs_type, v->fs_options)) == 0)
@@ -403,6 +404,16 @@ int format_volume(const char* volume) {
         return 0;
     }
 
+	if (strcmp(v->fs_type, "f2fs") == 0) {
+        int result = mkfs.f2fs_arm(v->device, v->length, volume, sehandle);
+        if (result != 0) {
+            LOGE("format_volume: mkfs.f2fs_arm failed on %s\n", v->device);
+            return -1;
+        }
+        return 0;
+    }
+	
+	
     if (strcmp(v->fs_type, "ext4") == 0) {
         int result = make_ext4fs(v->device, v->length, volume, sehandle);
         if (result != 0) {

@@ -267,6 +267,17 @@ Value* FormatFn(const char* name, State* state, int argc, Expr* argv[]) {
         }
         result = location;
 #endif
+
+	} else if (strcmp(fs_type, "f2fs") == 0) {
+        int status = mkfs.f2fs_arm(location, atoll(fs_size), mount_point, sehandle);
+        if (status != 0) {
+            fprintf(stderr, "%s: mkfs.f2fs_arm failed (%d) on %s",
+                    name, status, location);
+            result = strdup("");
+            goto done;
+        }
+        result = location;
+
     } else {
         fprintf(stderr, "%s: unsupported fs_type \"%s\" partition_type \"%s\"",
                 name, fs_type, partition_type);
