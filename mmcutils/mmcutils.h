@@ -85,7 +85,6 @@ int mmc_raw_write (const MmcPartition *partition, char *data, int data_size);
 
 int format_ext2_device(const char *device);
 int format_ext3_device(const char *device);
-int format_f2fs_device(const char *device);
 
 #endif  // MMCUTILS_H_
 

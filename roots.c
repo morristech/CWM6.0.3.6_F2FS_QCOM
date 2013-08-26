@@ -403,15 +403,6 @@ int format_volume(const char* volume) {
         }
         return 0;
     }
-
-	if (strcmp(v->fs_type, "f2fs") == 0) {
-        int result = mkfs.f2fs_arm(v->device, v->length, volume, sehandle);
-        if (result != 0) {
-            LOGE("format_volume: mkfs.f2fs_arm failed on %s\n", v->device);
-            return -1;
-        }
-        return 0;
-    }
 	
 	
     if (strcmp(v->fs_type, "ext4") == 0) {

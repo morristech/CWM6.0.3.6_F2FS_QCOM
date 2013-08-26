@@ -319,7 +319,6 @@ mmc_find_partition_by_name(const char *name)
 #define MKE2FS_BIN      "/sbin/mke2fs"
 #define TUNE2FS_BIN     "/sbin/tune2fs"
 #define E2FSCK_BIN      "/sbin/e2fsck"
-#define MKFS.F2FS_ARM    "/sbin/mkfs.f2fs_arm"
 
 int
 run_exec_process ( char **argv) {
@@ -338,18 +337,6 @@ run_exec_process ( char **argv) {
     }
     return 0;
 }
-
-int
-format_f2fs_device (const char *device) {
-    char *const mkfs.f2fs_arm[] = {MKFS.F2FS_ARM, "-t", device, NULL};
-    // Run mke2fs
-    if(run_exec_process(mkfs.f2fs_arm)) {
-        printf("failure while running mkfs.f2fs_arm\n");
-        return -1;
-    }
-    return 0;
-}
-
 
 int
 format_ext3_device (const char *device) {
