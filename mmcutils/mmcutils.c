@@ -319,6 +319,7 @@ mmc_find_partition_by_name(const char *name)
 #define MKE2FS_BIN      "/sbin/mke2fs"
 #define TUNE2FS_BIN     "/sbin/tune2fs"
 #define E2FSCK_BIN      "/sbin/e2fsck"
+#define MKFS.F2FS_ARM    "/sbin/mkfs.f2fs_arm"
 
 int
 run_exec_process ( char **argv) {
