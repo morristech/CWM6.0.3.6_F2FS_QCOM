@@ -105,16 +105,16 @@ int main(int argc, char** argv) {
         return 6;
     }
 
-    struct selinux_opt seopts[] = {
-      { SELABEL_OPT_PATH, "/file_contexts" }
-    };
+    //struct selinux_opt seopts[] = {
+    //  { SELABEL_OPT_PATH, "/file_contexts" }
+    //};
 
-    sehandle = selabel_open(SELABEL_CTX_FILE, seopts, 1);
+    //sehandle = selabel_open(SELABEL_CTX_FILE, seopts, 1);
 
-    if (!sehandle) {
+    //if (!sehandle) {
         //fprintf(stderr, "Warning:  No file_contexts\n"); Annoying on Android 4.2.2
         // fprintf(cmd_pipe, "ui_print Warning: No file_contexts\n");
-    }
+    //}
 
     // Evaluate the parsed script.
 
