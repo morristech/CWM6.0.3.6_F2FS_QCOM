@@ -112,7 +112,7 @@ int main(int argc, char** argv) {
     sehandle = selabel_open(SELABEL_CTX_FILE, seopts, 1);
 
     if (!sehandle) {
-        fprintf(stderr, "Warning:  No file_contexts\n");
+        //fprintf(stderr, "Warning:  No file_contexts\n"); Annoying on Android 4.2.2
         // fprintf(cmd_pipe, "ui_print Warning: No file_contexts\n");
     }
 
