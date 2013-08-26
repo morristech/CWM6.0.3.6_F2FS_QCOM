@@ -640,16 +640,20 @@ static void
 wipe_data(int confirm) {
     if (confirm && !confirm_selection( "Confirm wipe of all user data?", "Yes - Wipe all user data"))
         return;
-
+	
+	ui_print("This process may cause the device to appear frozen. Please be patient, as the stock kernel takes a long time with formatting /cache/.\n");
     ui_print("\n-- Wiping data...\n");
     device_wipe_data();
     erase_volume("/data");
+	ui_print("\n-- Data Wiped.\n");
+	ui_print("\n-- Wiping cache...\n");
     erase_volume("/cache");
-    if (has_datadata()) {
-        erase_volume("/datadata");
-    }
-    erase_volume("/sd-ext");
-    erase_volume("/sdcard/.android_secure");
+	ui_print("\n-- Cache wiped.\n");
+    //if (has_datadata()) {
+    //    erase_volume("/datadata");
+    //}
+    //erase_volume("/sd-ext");
+    //erase_volume("/sdcard/.android_secure");
     ui_print("Data wipe complete.\n");
 }
 
@@ -699,7 +703,8 @@ prompt_and_wait() {
 
             case ITEM_WIPE_CACHE:
                 if (confirm_selection("Confirm wipe?", "Yes - Wipe Cache"))
-                {
+                {	
+					ui_print("This process may cause the device to appear frozen. Please be patient, as the stock kernel takes a long time with formatting /cache/.\n");
                     ui_print("\n-- Wiping cache...\n");
                     erase_volume("/cache");
                     ui_print("Cache wipe complete.\n");
